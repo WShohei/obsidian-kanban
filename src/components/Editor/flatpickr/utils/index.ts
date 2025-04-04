@@ -5,12 +5,12 @@ export const int = (bool: boolean) => (bool === true ? 1 : 0);
 
 /* istanbul ignore next */
 export function debounce<F extends Function>(fn: F, wait: number, win: Window) {
-  let t: number;
-  return function (this: any) {
-    const args = arguments;
-    win.clearTimeout(t);
-    t = win.setTimeout(() => fn.apply(this, args), wait);
-  };
+    let t: number;
+    return function (this: any) {
+        const args = arguments;
+        win.clearTimeout(t);
+        t = win.setTimeout(() => fn.apply(this, args), wait);
+    };
 }
 
 export const arrayify = <T>(obj: T | T[]): T[] => (Array.isArray(obj) ? obj : [obj]);

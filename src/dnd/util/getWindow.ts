@@ -1,7 +1,7 @@
 export function getParentWindow(el: Element) {
-  return el.win;
+    return el.win;
 }
 
 export function getParentBodyElement(el: Element) {
-  return el.doc.body;
+    return el.doc.body;
 }

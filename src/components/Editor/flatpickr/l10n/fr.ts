@@ -4,61 +4,61 @@ import { FlatpickrFn } from '../types/instance';
 import { CustomLocale } from '../types/locale';
 
 const fp =
-  typeof window !== 'undefined' && (window as any).flatpickr !== undefined
-    ? (window as any).flatpickr
-    : ({
-        l10ns: {},
-      } as FlatpickrFn);
+    typeof window !== 'undefined' && (window as any).flatpickr !== undefined
+        ? (window as any).flatpickr
+        : ({
+              l10ns: {},
+          } as FlatpickrFn);
 
 export const French: CustomLocale = {
-  firstDayOfWeek: 1,
+    firstDayOfWeek: 1,
 
-  weekdays: {
-    shorthand: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
-    longhand: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
-  },
+    weekdays: {
+        shorthand: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
+        longhand: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+    },
 
-  months: {
-    shorthand: [
-      'janv',
-      'févr',
-      'mars',
-      'avr',
-      'mai',
-      'juin',
-      'juil',
-      'août',
-      'sept',
-      'oct',
-      'nov',
-      'déc',
-    ],
-    longhand: [
-      'janvier',
-      'février',
-      'mars',
-      'avril',
-      'mai',
-      'juin',
-      'juillet',
-      'août',
-      'septembre',
-      'octobre',
-      'novembre',
-      'décembre',
-    ],
-  },
+    months: {
+        shorthand: [
+            'janv',
+            'févr',
+            'mars',
+            'avr',
+            'mai',
+            'juin',
+            'juil',
+            'août',
+            'sept',
+            'oct',
+            'nov',
+            'déc',
+        ],
+        longhand: [
+            'janvier',
+            'février',
+            'mars',
+            'avril',
+            'mai',
+            'juin',
+            'juillet',
+            'août',
+            'septembre',
+            'octobre',
+            'novembre',
+            'décembre',
+        ],
+    },
 
-  ordinal: (nth) => {
-    if (nth > 1) return '';
+    ordinal: (nth) => {
+        if (nth > 1) return '';
 
-    return 'er';
-  },
-  rangeSeparator: ' au ',
-  weekAbbreviation: 'Sem',
-  scrollTitle: 'Défiler pour augmenter la valeur',
-  toggleTitle: 'Cliquer pour basculer',
-  time_24hr: true,
+        return 'er';
+    },
+    rangeSeparator: ' au ',
+    weekAbbreviation: 'Sem',
+    scrollTitle: 'Défiler pour augmenter la valeur',
+    toggleTitle: 'Cliquer pour basculer',
+    time_24hr: true,
 };
 
 fp.l10ns.fr = French;

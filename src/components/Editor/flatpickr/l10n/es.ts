@@ -4,43 +4,56 @@ import { FlatpickrFn } from '../types/instance';
 import { CustomLocale } from '../types/locale';
 
 const fp =
-  typeof window !== 'undefined' && (window as any).flatpickr !== undefined
-    ? (window as any).flatpickr
-    : ({
-        l10ns: {},
-      } as FlatpickrFn);
+    typeof window !== 'undefined' && (window as any).flatpickr !== undefined
+        ? (window as any).flatpickr
+        : ({
+              l10ns: {},
+          } as FlatpickrFn);
 
 export const Spanish: CustomLocale = {
-  weekdays: {
-    shorthand: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-    longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-  },
+    weekdays: {
+        shorthand: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+        longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    },
 
-  months: {
-    shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-    longhand: [
-      'Enero',
-      'Febrero',
-      'Marzo',
-      'Abril',
-      'Mayo',
-      'Junio',
-      'Julio',
-      'Agosto',
-      'Septiembre',
-      'Octubre',
-      'Noviembre',
-      'Diciembre',
-    ],
-  },
+    months: {
+        shorthand: [
+            'Ene',
+            'Feb',
+            'Mar',
+            'Abr',
+            'May',
+            'Jun',
+            'Jul',
+            'Ago',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dic',
+        ],
+        longhand: [
+            'Enero',
+            'Febrero',
+            'Marzo',
+            'Abril',
+            'Mayo',
+            'Junio',
+            'Julio',
+            'Agosto',
+            'Septiembre',
+            'Octubre',
+            'Noviembre',
+            'Diciembre',
+        ],
+    },
 
-  ordinal: () => {
-    return 'º';
-  },
+    ordinal: () => {
+        return 'º';
+    },
 
-  firstDayOfWeek: 1,
-  rangeSeparator: ' a ',
-  time_24hr: true,
+    firstDayOfWeek: 1,
+    rangeSeparator: ' a ',
+    time_24hr: true,
 };
 
 fp.l10ns.es = Spanish;

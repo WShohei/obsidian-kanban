@@ -1,0 +1,126 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Obsidian Kanbanプラグイン - ディレクトリ構造とその内容
+
+## プロジェクト概要
+このプロジェクトは、Obsidianというマークダウンベースのメモアプリケーション用のプラグインで、カンバンボード機能を提供しています。マークダウンファイルをベースとしたカンバンボードを作成・管理することができます。
+
+## ディレクトリ構造
+
+```
+obsidian-kanban/
+├── .git/                      # Gitリポジトリ情報
+├── .github/                   # GitHub関連ファイル
+├── .vscode/                   # VSCode設定
+├── docs/                      # ドキュメント
+│   ├── Settings/              # 設定関連のドキュメント
+│   ├── How do I/              # 使用方法のドキュメント
+│   ├── Assets/                # ドキュメント用の画像など
+│   ├── FAQs/                  # よくある質問
+│   ├── .obsidian/             # Obsidian設定
+│   └── Obsidian Kanban Plugin.md # メインドキュメント
+├── src/                       # ソースコード
+│   ├── components/            # UIコンポーネント
+│   │   ├── Lane/              # レーン（列）コンポーネント
+│   │   ├── Item/              # アイテム（カード）コンポーネント
+│   │   ├── Editor/            # エディターコンポーネント
+│   │   ├── Icon/              # アイコンコンポーネント
+│   │   ├── MarkdownRenderer/  # マークダウンレンダラー
+│   │   ├── Table/             # テーブルコンポーネント
+│   │   ├── context.ts         # コンテキスト
+│   │   ├── helpers.ts         # ヘルパー関数
+│   │   ├── types.ts           # 型定義
+│   │   └── Kanban.tsx         # メインのカンバンコンポーネント
+│   ├── dnd/                   # ドラッグ＆ドロップ機能
+│   ├── helpers/               # ヘルパー関数
+│   │   ├── boardModifiers.ts  # ボード編集機能
+│   │   ├── patch.ts           # パッチ機能
+│   │   ├── renderMarkdown.ts  # マークダウンレンダリング
+│   │   └── util.ts            # ユーティリティ
+│   ├── lang/                  # 多言語対応
+│   ├── parsers/               # パーサー
+│   │   ├── extensions/        # 拡張機能
+│   │   ├── formats/           # フォーマット
+│   │   ├── helpers/           # パーサーヘルパー
+│   │   ├── common.ts          # 共通機能
+│   │   ├── List.ts            # リスト処理
+│   │   └── parseMarkdown.ts   # マークダウンパース
+│   ├── settings/              # 設定UI
+│   │   ├── DateColorSettings.tsx  # 日付色設定
+│   │   ├── MetadataSettings.tsx   # メタデータ設定
+│   │   ├── TagColorSettings.tsx   # タグ色設定
+│   │   └── TagSortSettings.tsx    # タグソート設定
+│   ├── DragDropApp.tsx        # ドラッグ＆ドロップアプリ
+│   ├── KanbanView.tsx         # カンバンビュー
+│   ├── Settings.ts            # 設定管理
+│   ├── StateManager.ts        # 状態管理
+│   ├── helpers.ts             # 一般ヘルパー
+│   ├── main.ts                # プラグインのメインファイル
+│   ├── settingHelpers.ts      # 設定ヘルパー
+│   ├── styles.less            # スタイル定義
+│   └── types.d.ts             # 型定義
+├── .eslintrc.js               # ESLint設定
+├── .gitignore                 # Git除外設定
+├── LICENSE.md                 # ライセンス
+├── README.md                  # プロジェクト説明
+├── buffer-es6.mjs             # バッファユーティリティ
+├── esbuild.config.mjs         # ビルド設定
+├── manifest.json              # プラグイン情報
+├── package.json               # npm依存関係
+├── preact-shim.js             # Preactシム
+├── prettier.config.cjs        # Prettier設定
+├── release-notes.md           # リリースノート
+├── tsconfig.json              # TypeScript設定
+├── version-bump.mjs           # バージョン更新スクリプト
+├── versions.json              # バージョン履歴
+└── yarn.lock                  # Yarn依存関係ロック
+```
+
+## 主要コンポーネントの説明
+
+### 1. メインプラグイン (main.ts)
+- プラグインのエントリーポイント
+- Obsidianとの連携、ビューの登録、イベント処理などを担当
+- 設定の読み込み・保存機能
+- ウィンドウ管理とビュー管理
+
+### 2. カンバンビュー (KanbanView.tsx)
+- カンバンボードの表示を担当するビュークラス
+- マークダウンファイルとカンバンボードの変換処理
+- ビューの状態管理
+- ユーザーインターフェースのイベント処理
+
+### 3. コンポーネント (components/)
+- カンバンボードを構成する主要UIコンポーネント
+- レーン（列）、アイテム（カード）、エディターなど
+- マークダウンレンダリング機能
+- ドラッグ＆ドロップインターフェース
+
+### 4. パーサー (parsers/)
+- マークダウンとカンバンデータの相互変換
+- フロントマター処理
+- 様々なフォーマットのサポート
+
+### 5. 設定 (Settings.ts, settings/)
+- プラグイン設定の管理
+- 設定UIコンポーネント
+- 日付、タグ、メタデータなどの設定オプション
+
+### 6. ヘルパー (helpers/)
+- ボード操作ユーティリティ
+- マークダウンレンダリング
+- ユーティリティ関数
+
+### 7. 状態管理 (StateManager.ts)
+- カンバンボードの状態管理
+- 変更の追跡と保存
+- 同期処理
+
+### 8. 国際化 (lang/)
+- 多言語サポート
+- 翻訳管理
+
+このプラグインは主にTypeScriptとReact/Preactで実装されており、Obsidianのプラグインシステムを利用してマークダウンファイルをカンバンボードとして表示・編集する機能を提供しています。UI操作をマークダウンに変換したり、マークダウンをパースしてカンバンビューに表示したりする機能が中心となっています。

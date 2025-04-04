@@ -251,7 +251,7 @@ const context = await esbuild.context({
   logLevel: 'info',
   sourcemap: isProd ? false : 'inline',
   treeShaking: true,
-  outdir: './',
+  outdir: './build',
   minify: isProd,
 });
 

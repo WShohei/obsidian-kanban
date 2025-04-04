@@ -10,115 +10,115 @@ import { c } from '../helpers';
 import { Item } from '../types';
 
 interface ItemCheckboxProps {
-  path: Path;
-  item: Item;
-  shouldMarkItemsComplete: boolean;
-  stateManager: StateManager;
-  boardModifiers: BoardModifiers;
+    path: Path;
+    item: Item;
+    shouldMarkItemsComplete: boolean;
+    stateManager: StateManager;
+    boardModifiers: BoardModifiers;
 }
 
 export const ItemCheckbox = memo(function ItemCheckbox({
-  shouldMarkItemsComplete,
-  path,
-  item,
-  stateManager,
-  boardModifiers,
+    shouldMarkItemsComplete,
+    path,
+    item,
+    stateManager,
+    boardModifiers,
 }: ItemCheckboxProps) {
-  const shouldShowCheckbox = stateManager.useSetting('show-checkboxes');
+    const shouldShowCheckbox = stateManager.useSetting('show-checkboxes');
 
-  const [isCtrlHoveringCheckbox, setIsCtrlHoveringCheckbox] = useState(false);
-  const [isHoveringCheckbox, setIsHoveringCheckbox] = useState(false);
+    const [isCtrlHoveringCheckbox, setIsCtrlHoveringCheckbox] = useState(false);
+    const [isHoveringCheckbox, setIsHoveringCheckbox] = useState(false);
 
-  const onCheckboxChange = useCallback(() => {
-    const updates = toggleTask(item, stateManager.file);
-    if (updates) {
-      const [itemStrings, checkChars, thisIndex] = updates;
-      const replacements: Item[] = itemStrings.map((str, i) => {
-        const next = stateManager.getNewItem(str, checkChars[i]);
-        if (i === thisIndex) next.id = item.id;
-        return next;
-      });
+    const onCheckboxChange = useCallback(() => {
+        const updates = toggleTask(item, stateManager.file);
+        if (updates) {
+            const [itemStrings, checkChars, thisIndex] = updates;
+            const replacements: Item[] = itemStrings.map((str, i) => {
+                const next = stateManager.getNewItem(str, checkChars[i]);
+                if (i === thisIndex) next.id = item.id;
+                return next;
+            });
 
-      boardModifiers.replaceItem(path, replacements);
-    } else {
-      boardModifiers.updateItem(
-        path,
-        update(item, {
-          data: {
-            checkChar: {
-              $apply: (v) => {
-                return v === ' ' ? getTaskStatusDone() : ' ';
-              },
-            },
-            $toggle: ['checked'],
-          },
-        })
-      );
-    }
-  }, [item, stateManager, boardModifiers, ...path]);
-
-  useEffect(() => {
-    if (isHoveringCheckbox) {
-      const handler = (e: KeyboardEvent) => {
-        if (e.metaKey || e.ctrlKey) {
-          setIsCtrlHoveringCheckbox(true);
+            boardModifiers.replaceItem(path, replacements);
         } else {
-          setIsCtrlHoveringCheckbox(false);
+            boardModifiers.updateItem(
+                path,
+                update(item, {
+                    data: {
+                        checkChar: {
+                            $apply: (v) => {
+                                return v === ' ' ? getTaskStatusDone() : ' ';
+                            },
+                        },
+                        $toggle: ['checked'],
+                    },
+                })
+            );
         }
-      };
+    }, [item, stateManager, boardModifiers, ...path]);
 
-      activeWindow.addEventListener('keydown', handler);
-      activeWindow.addEventListener('keyup', handler);
+    useEffect(() => {
+        if (isHoveringCheckbox) {
+            const handler = (e: KeyboardEvent) => {
+                if (e.metaKey || e.ctrlKey) {
+                    setIsCtrlHoveringCheckbox(true);
+                } else {
+                    setIsCtrlHoveringCheckbox(false);
+                }
+            };
 
-      return () => {
-        activeWindow.removeEventListener('keydown', handler);
-        activeWindow.removeEventListener('keyup', handler);
-      };
+            activeWindow.addEventListener('keydown', handler);
+            activeWindow.addEventListener('keyup', handler);
+
+            return () => {
+                activeWindow.removeEventListener('keydown', handler);
+                activeWindow.removeEventListener('keyup', handler);
+            };
+        }
+    }, [isHoveringCheckbox]);
+
+    if (!(shouldMarkItemsComplete || shouldShowCheckbox)) {
+        return null;
     }
-  }, [isHoveringCheckbox]);
 
-  if (!(shouldMarkItemsComplete || shouldShowCheckbox)) {
-    return null;
-  }
+    return (
+        <div
+            onMouseEnter={(e) => {
+                setIsHoveringCheckbox(true);
 
-  return (
-    <div
-      onMouseEnter={(e) => {
-        setIsHoveringCheckbox(true);
+                if (e.ctrlKey || e.metaKey) {
+                    setIsCtrlHoveringCheckbox(true);
+                }
+            }}
+            onMouseLeave={() => {
+                setIsHoveringCheckbox(false);
 
-        if (e.ctrlKey || e.metaKey) {
-          setIsCtrlHoveringCheckbox(true);
-        }
-      }}
-      onMouseLeave={() => {
-        setIsHoveringCheckbox(false);
-
-        if (isCtrlHoveringCheckbox) {
-          setIsCtrlHoveringCheckbox(false);
-        }
-      }}
-      className={c('item-prefix-button-wrapper')}
-    >
-      {shouldShowCheckbox && !isCtrlHoveringCheckbox && (
-        <input
-          onChange={onCheckboxChange}
-          type="checkbox"
-          className="task-list-item-checkbox"
-          checked={item.data.checked}
-          data-task={item.data.checkChar}
-        />
-      )}
-      {(isCtrlHoveringCheckbox || (!shouldShowCheckbox && shouldMarkItemsComplete)) && (
-        <a
-          onClick={() => {
-            boardModifiers.archiveItem(path);
-          }}
-          className={`${c('item-prefix-button')} clickable-icon`}
-          aria-label={isCtrlHoveringCheckbox ? undefined : 'Archive card'}
+                if (isCtrlHoveringCheckbox) {
+                    setIsCtrlHoveringCheckbox(false);
+                }
+            }}
+            className={c('item-prefix-button-wrapper')}
         >
-          <Icon name="sheets-in-box" />
-        </a>
-      )}
-    </div>
-  );
+            {shouldShowCheckbox && !isCtrlHoveringCheckbox && (
+                <input
+                    onChange={onCheckboxChange}
+                    type="checkbox"
+                    className="task-list-item-checkbox"
+                    checked={item.data.checked}
+                    data-task={item.data.checkChar}
+                />
+            )}
+            {(isCtrlHoveringCheckbox || (!shouldShowCheckbox && shouldMarkItemsComplete)) && (
+                <a
+                    onClick={() => {
+                        boardModifiers.archiveItem(path);
+                    }}
+                    className={`${c('item-prefix-button')} clickable-icon`}
+                    aria-label={isCtrlHoveringCheckbox ? undefined : 'Archive card'}
+                >
+                    <Icon name="sheets-in-box" />
+                </a>
+            )}
+        </div>
+    );
 });

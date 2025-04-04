@@ -4,40 +4,53 @@ import { FlatpickrFn } from '../types/instance';
 import { CustomLocale } from '../types/locale';
 
 const fp =
-  typeof window !== 'undefined' && (window as any).flatpickr !== undefined
-    ? (window as any).flatpickr
-    : ({
-        l10ns: {},
-      } as FlatpickrFn);
+    typeof window !== 'undefined' && (window as any).flatpickr !== undefined
+        ? (window as any).flatpickr
+        : ({
+              l10ns: {},
+          } as FlatpickrFn);
 
 export const Serbian: CustomLocale = {
-  weekdays: {
-    shorthand: ['Ned', 'Pon', 'Uto', 'Sre', 'Čet', 'Pet', 'Sub'],
-    longhand: ['Nedelja', 'Ponedeljak', 'Utorak', 'Sreda', 'Četvrtak', 'Petak', 'Subota'],
-  },
+    weekdays: {
+        shorthand: ['Ned', 'Pon', 'Uto', 'Sre', 'Čet', 'Pet', 'Sub'],
+        longhand: ['Nedelja', 'Ponedeljak', 'Utorak', 'Sreda', 'Četvrtak', 'Petak', 'Subota'],
+    },
 
-  months: {
-    shorthand: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Avg', 'Sep', 'Okt', 'Nov', 'Dec'],
-    longhand: [
-      'Januar',
-      'Februar',
-      'Mart',
-      'April',
-      'Maj',
-      'Jun',
-      'Jul',
-      'Avgust',
-      'Septembar',
-      'Oktobar',
-      'Novembar',
-      'Decembar',
-    ],
-  },
+    months: {
+        shorthand: [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'Maj',
+            'Jun',
+            'Jul',
+            'Avg',
+            'Sep',
+            'Okt',
+            'Nov',
+            'Dec',
+        ],
+        longhand: [
+            'Januar',
+            'Februar',
+            'Mart',
+            'April',
+            'Maj',
+            'Jun',
+            'Jul',
+            'Avgust',
+            'Septembar',
+            'Oktobar',
+            'Novembar',
+            'Decembar',
+        ],
+    },
 
-  firstDayOfWeek: 1,
-  weekAbbreviation: 'Ned.',
-  rangeSeparator: ' do ',
-  time_24hr: true,
+    firstDayOfWeek: 1,
+    weekAbbreviation: 'Ned.',
+    rangeSeparator: ' do ',
+    time_24hr: true,
 };
 
 fp.l10ns.sr = Serbian;

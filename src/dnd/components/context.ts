@@ -13,7 +13,7 @@ export const ScopeIdContext = Preact.createContext<string>('');
 export const ScrollManagerContext = Preact.createContext<ScrollManager | null>(null);
 
 export const ScrollStateContext = Preact.createContext<ScrollStateManager>(
-  new ScrollStateManager()
+    new ScrollStateManager()
 );
 
 export const SortManagerContext = Preact.createContext<SortManager | null>(null);

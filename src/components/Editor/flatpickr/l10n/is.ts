@@ -4,53 +4,66 @@ import { FlatpickrFn } from '../types/instance';
 import { CustomLocale } from '../types/locale';
 
 const fp =
-  typeof window !== 'undefined' && (window as any).flatpickr !== undefined
-    ? (window as any).flatpickr
-    : ({
-        l10ns: {},
-      } as FlatpickrFn);
+    typeof window !== 'undefined' && (window as any).flatpickr !== undefined
+        ? (window as any).flatpickr
+        : ({
+              l10ns: {},
+          } as FlatpickrFn);
 
 export const Icelandic: CustomLocale = {
-  weekdays: {
-    shorthand: ['Sun', 'Mán', 'Þri', 'Mið', 'Fim', 'Fös', 'Lau'],
-    longhand: [
-      'Sunnudagur',
-      'Mánudagur',
-      'Þriðjudagur',
-      'Miðvikudagur',
-      'Fimmtudagur',
-      'Föstudagur',
-      'Laugardagur',
-    ],
-  },
+    weekdays: {
+        shorthand: ['Sun', 'Mán', 'Þri', 'Mið', 'Fim', 'Fös', 'Lau'],
+        longhand: [
+            'Sunnudagur',
+            'Mánudagur',
+            'Þriðjudagur',
+            'Miðvikudagur',
+            'Fimmtudagur',
+            'Föstudagur',
+            'Laugardagur',
+        ],
+    },
 
-  months: {
-    shorthand: ['Jan', 'Feb', 'Mar', 'Apr', 'Maí', 'Jún', 'Júl', 'Ágú', 'Sep', 'Okt', 'Nóv', 'Des'],
-    longhand: [
-      'Janúar',
-      'Febrúar',
-      'Mars',
-      'Apríl',
-      'Maí',
-      'Júní',
-      'Júlí',
-      'Ágúst',
-      'September',
-      'Október',
-      'Nóvember',
-      'Desember',
-    ],
-  },
+    months: {
+        shorthand: [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'Maí',
+            'Jún',
+            'Júl',
+            'Ágú',
+            'Sep',
+            'Okt',
+            'Nóv',
+            'Des',
+        ],
+        longhand: [
+            'Janúar',
+            'Febrúar',
+            'Mars',
+            'Apríl',
+            'Maí',
+            'Júní',
+            'Júlí',
+            'Ágúst',
+            'September',
+            'Október',
+            'Nóvember',
+            'Desember',
+        ],
+    },
 
-  ordinal: () => {
-    return '.';
-  },
+    ordinal: () => {
+        return '.';
+    },
 
-  firstDayOfWeek: 1,
-  rangeSeparator: ' til ',
-  weekAbbreviation: 'vika',
-  yearAriaLabel: 'Ár',
-  time_24hr: true,
+    firstDayOfWeek: 1,
+    rangeSeparator: ' til ',
+    weekAbbreviation: 'vika',
+    yearAriaLabel: 'Ár',
+    time_24hr: true,
 };
 
 fp.l10ns.is = Icelandic;
